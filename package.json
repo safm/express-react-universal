@@ -1,0 +1,39 @@
+{
+  "name": "express-react-universal",
+  "version": "0.0.1",
+  "description": "A ReactJS and expressJs based boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "build:prod": "cross-env NODE_ENV=production webpack",
+    "watch": "webpack --watch",
+    "serve": "nodemon -w dist/server.js dist/server.js",
+    "watch-and-serve": "concurrently --kill-others \"npm run watch\" \"npm run serve\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["expressJs", "reactjs", "react-router-v4", "universal"],
+  "author": "Sarfaraz Merchant",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-plugin-transform-react-jsx-self": "^6.22.0",
+    "babel-plugin-transform-react-jsx-source": "^6.22.0",
+    "babel-preset-env": "^1.1.8",
+    "babel-preset-react": "^6.23.0",
+    "babili-webpack-plugin": "0.0.10",
+    "concurrently": "^3.3.0",
+    "cross-env": "^3.1.4",
+    "nodemon": "^1.11.0",
+    "source-map-support": "^0.4.11",
+    "webpack": "^2.2.1",
+    "webpack-node-externals": "^1.5.4"
+  },
+  "dependencies": {
+    "express": "^4.14.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0"
+  }
+}
