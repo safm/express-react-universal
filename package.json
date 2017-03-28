@@ -4,14 +4,20 @@
   "description": "A ReactJS and expressJs based boilerplate",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "build:prod": "cross-env NODE_ENV=production webpack",
-    "watch": "webpack --watch",
+    "clean": "shx rm -rf build dist",
+    "build": "npm run clean && webpack",
+    "build:prod": "npm run clean && cross-env NODE_ENV=production webpack",
+    "watch": "npm run clean && webpack --watch",
     "serve": "nodemon -w dist/server.js dist/server.js",
     "watch-and-serve": "concurrently --kill-others \"npm run watch\" \"npm run serve\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["expressJs", "reactjs", "react-router-v4", "universal"],
+  "keywords": [
+    "expressJs",
+    "reactjs",
+    "react-router-v4",
+    "universal"
+  ],
   "author": "Sarfaraz Merchant",
   "license": "ISC",
   "devDependencies": {
@@ -24,7 +30,9 @@
     "babili-webpack-plugin": "0.0.10",
     "concurrently": "^3.3.0",
     "cross-env": "^3.1.4",
+    "html-webpack-plugin": "^2.28.0",
     "nodemon": "^1.11.0",
+    "shx": "^0.2.2",
     "source-map-support": "^0.4.11",
     "webpack": "^2.2.1",
     "webpack-node-externals": "^1.5.4"

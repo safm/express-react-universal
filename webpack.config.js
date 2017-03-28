@@ -2,20 +2,39 @@ const path = require( 'path' );
 const webpack = require( 'webpack' );
 const createBabelConfig = require( './babelrc' );
 const nodeExternals = require( 'webpack-node-externals' );
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const MinifierPlugin = webpack.optimize.UglifyJsPlugin;
 
 const clientConfig = {
-	entry: path.resolve( './src/client/index.js' ),
+	entry: {
+		bundle: path.resolve( './src/client/index.js' )
+	},
 	output: {
 		path: path.resolve( './dist' ),
-		filename: 'bundle.js',
+		publicPath: '/dist/',
+		filename: '[name].[chunkhash].js'
 	},
+	// filename: '[name].[chunkhash].js',
+ //            path: path.resolve(__dirname, 'dist')
 
 	plugins: [
+		new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            minChunks: function (module) {
+               // this assumes your vendor imports exist in the node_modules directory
+               return module.context && module.context.indexOf('node_modules') !== -1;
+            }
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'manifest'
+        }),
 		PRODUCTION && new MinifierPlugin(),
 		new webpack.DefinePlugin( {
 			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV )
+		} ),
+		new HtmlWebpackPlugin( {
+			template: "src/index.html"
 		} )
 	].filter( e => e ),
 

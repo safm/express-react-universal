@@ -10,7 +10,7 @@ const app = express();
 
 app.use('/static', express.static(path.resolve(__dirname, '../../dist')));
 app.get( '*', ( req, res ) => {
-  const html = fs.readFileSync(path.resolve(__dirname, '../index.html')).toString();
+  const html = fs.readFileSync(path.resolve(__dirname, '../../dist/index.html')).toString();
   const context = {};
   const markup = ReactDOMServer.renderToString(
     <Router location={req.url} context={context} >
