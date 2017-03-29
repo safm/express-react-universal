@@ -43,7 +43,7 @@ const clientConfig = {
 			test: /\.js$/,
 			include: path.resolve( './src' ),
 			loader: 'babel-loader',
-			query: createBabelConfig(),
+			options: createBabelConfig(),
 		} ],
 	},
 	devtool: PRODUCTION ? 'source-map' : 'cheap-module-eval-source-map',
